@@ -247,7 +247,7 @@
                     rangeStart: 0,
                     rangeStop: 100
                 },
-                that = this;
+                that = {};
 
             // this is the 'cached' value that is listenable
             that.valueObj = {
@@ -289,7 +289,7 @@
 
             // @param value is a number
             that.setValue = function(newValue) {
-                if (typeof value !== 'number') {
+                if (typeof newValue !== 'number') {
                     return;
                 }
                 var deNormalized = Math.floor((newValue * (config.rangeStop - config.rangeStart)) + config.rangeStart);
