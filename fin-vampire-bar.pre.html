@@ -1,0 +1,113 @@
+<!--
+The `fin-vampire-bar` element is a custom web component that handles scrolling via a range adapter
+@group OpenFin hypergrid
+@element fin-vampire-bar
+@homepage http://github.com/
+-->
+<link rel="import" href="../polymer/polymer.html">
+<polymer-element name="fin-vampire-bar" attributes="">
+  <template>
+    <style>
+    .scroll-bar {
+      width: 15px;
+      position: absolute;
+      top:0;
+      bottom:0;
+      background-color: lightgrey;
+    }
+    .scroll-bar-gutter {
+      position: absolute;
+      top: 0%;
+      bottom: 0%;
+      right: 0%;
+      left: 0%;
+      margin-top: 15px;
+      margin-bottom: 35px;
+    }
+    .scroll-bar.horizontal {
+      height: 15px;
+      width: 100%;
+      position: absolute;
+      left:0;
+      right: 100%;
+      top:100%;
+    }
+
+    .horizontal .scroll-bar-gutter {
+      position: absolute;
+      top: 0%;
+      bottom: 0%;
+      right: 0%;
+      left: 0%;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      margin-left: 15px;
+      margin-right: 35px;
+    }
+
+    .scroll-bar-up{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 15px;
+      height: 15px;
+      background-color: darkgrey;
+    }
+
+    .scroll-bar.horizontal .scroll-bar-up{
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: auto;
+      width: 15px;
+      height: 15px;
+      background-color: darkgrey;
+    }
+
+    .scroll-bar-thumb {
+      background-color: gray;
+      width: 15px;
+      height: 20px;
+      top: 0;
+      left: 0px;
+      position: absolute;
+    }
+/*    .scroll-bar-thumb:mousedown {
+
+    }*/
+
+    .scroll-bar.horizontal .scroll-bar-thumb {
+      height: 15px;
+      width: 20px;
+      left: 0px;
+      top: 0;
+      position: absolute;
+    }
+
+    .scroll-bar-down{
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 15px;
+      height: 15px;
+      background-color: darkgrey;
+    }
+    .scroll-bar.horizontal .scroll-bar-down{
+      position: absolute;
+      left: 0;
+      width: 15px;
+      height: 15px;
+      background-color: darkgrey;
+    }
+
+    </style>
+    <div class="scroll-bar">
+      <div class="scroll-bar-up"></div>
+      <div class="scroll-bar-gutter">
+        <div class="scroll-bar-thumb" draggable="false"></div>
+      </div>
+      <div class="scroll-bar-down"></div>
+    </div>
+  </template>
+
+  <script>
