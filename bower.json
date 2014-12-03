@@ -1,0 +1,7 @@
+{
+  "name": "fin-vampire-bar#gh-pages",
+  "private": true,
+  "dependencies": {
+    "fin-vampire-bar": "datamadic/fin-vampire-bar#master"
+  }
+}
