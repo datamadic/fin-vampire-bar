@@ -1,8 +1,8 @@
 fin-vampire-bar
 ================
 
-See the [component page](http://datamadic.github.io/datamadic/fin-vampire-bar) for more information.
+See the [component page](http://datamadic.github.io/fin-vampire-bar/components/fin-vampire-bar) for more information.
 
 ## Getting Started
 
-We've put together a [guide for fin-vampire-bar](http://www.polymer-project.org/docs/start/reusableelements.html) to help get you rolling.
+We've put together a [guide for polymer](http://www.polymer-project.org) to help get you rolling.
