@@ -66,8 +66,8 @@
                 that.thumb.rangeAdapter = rangeAdapter;
             }
 
-            Object.observe(that.rangeAdapter.valueObj, function(change) {
-                var value = change[0].object.value;
+            rangeAdapter.valueChanged = function(change) {
+                var value = rangeAdapter.getValue();
                 if (value) {
                     try {
                         that.supressUpdates = true;
@@ -76,7 +76,8 @@
                         that.supressUpdates = false;
                     }
                 }
-            });
+            };
+
         },
 
         offset : 0,
@@ -256,12 +257,14 @@
                 value: null
             };
 
-            Object.observe(subject, function() {
-                that.subjectChanged();
-            });
+            // apparent Polymer object.observe polyfill breaking change...
+            // Object.observe(subject, function() {
+            //     that.subjectChanged();
+            // });
 
             that.subjectChanged = function() {
                 that.valueObj.value = that.computeNormalizedValue();
+                that.valueChanged();
             };
 
             // that.grid = function(value) {
@@ -297,6 +300,7 @@
                 var deNormalized = Math.floor((newValue * (config.rangeStop - config.rangeStart)) + config.rangeStart);
                 subject.setValue(deNormalized);
                 that.valueObj.value = newValue;
+                that.valueChanged();
             };
             that.computeNormalizedValue = function() {
                 var value = (subject.getValue() - config.rangeStart) / (config.rangeStop - config.rangeStart);
@@ -306,6 +310,9 @@
             that.getValue = function() {
                 return that.valueObj.value;
             };
+
+            that.valueChanged = function(){};
+
 
             return that;
         }
