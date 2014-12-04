@@ -79,6 +79,8 @@
             });
         },
 
+        offset : 0,
+
         // the createdCallback method will be called by the native code
         attached: function() {
 
