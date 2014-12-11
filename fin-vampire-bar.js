@@ -145,8 +145,10 @@
 
             that.thumb.addEventListener('mousedown', function(event) {
                 that.isScrolling = true;
+                var direction = that.orientation === 'y' ? 'top' : 'left';
+                var distanceFromEdge = that.gutter.getBoundingClientRect()[direction];
                 var offset = (typeof event['offset' + that.orientation.toUpperCase()] === 'undefined') ? 'layer' : 'offset';
-                that.offset = event[offset + that.orientation.toUpperCase()];
+                that.offset = event[offset + that.orientation.toUpperCase()] + distanceFromEdge;
             });
 
             return that;
@@ -169,6 +171,7 @@
             var that = this;
             document.addEventListener('mouseup', function() {
                 if (that.isScrolling) {
+                    that.offset = 0;
                     that.isScrolling = false;
                 }
             });
