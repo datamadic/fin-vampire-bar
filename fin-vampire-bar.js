@@ -184,8 +184,7 @@
                 direction = this.orientation === 'y' ? 'top' : 'left',
                 //percent,
                 maxScroll = that.getMaxScroll(),
-                distanceFromEdge = that.gutter.getBoundingClientRect(),
-                offBy = pageLocation - distanceFromEdge[direction] - that.offset;
+                offBy = pageLocation -  that.offset;
 
             offBy = offBy < 0 ? 0 : offBy;
             offBy = offBy / maxScroll;
