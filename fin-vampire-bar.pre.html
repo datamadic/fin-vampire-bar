@@ -102,11 +102,11 @@ The `fin-vampire-bar` element is a custom web component that handles scrolling v
 
     </style>
     <div class="scroll-bar">
-      <div class="scroll-bar-up"></div>
-      <div class="scroll-bar-gutter">
+      <div on-holdpulse="{{onUpHold}}" on-tap="{{onUpClick}}" class="scroll-bar-up"></div>
+      <div on-holdpulse="{{onGutterHold}}" on-tap="{{onGutterClick}}" class="scroll-bar-gutter">
         <div class="scroll-bar-thumb" draggable="false"></div>
       </div>
-      <div class="scroll-bar-down"></div>
+      <div on-holdpulse="{{onDownHold}}" on-tap="{{onDownClick}}" class="scroll-bar-down"></div>
     </div>
   </template>
 

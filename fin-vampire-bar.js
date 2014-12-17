@@ -66,7 +66,7 @@
                 that.thumb.rangeAdapter = rangeAdapter;
             }
 
-            rangeAdapter.valueChanged = function(change) {
+            rangeAdapter.valueChanged = function() {
                 var value = rangeAdapter.getValue();
                 if (value) {
                     try {
@@ -80,22 +80,20 @@
 
         },
 
-        offset : 0,
+        offset: 0,
 
         // the createdCallback method will be called by the native code
         attached: function() {
 
             var that = this;
 
-
-
-
-            // this.this.shadowRoot = this.shadowRoot;
-
             // get the actionable child elements
             this.bar = this.shadowRoot.querySelector('.scroll-bar');
             this.thumb = this.shadowRoot.querySelector('.scroll-bar-thumb');
             this.gutter = this.shadowRoot.querySelector('.scroll-bar-gutter');
+
+            this.stepUp = this.shadowRoot.querySelector('.scroll-bar-up');
+            this.stepDown = this.shadowRoot.querySelector('.scroll-bar-down');
 
             this.configureOrientation();
 
@@ -179,12 +177,36 @@
             return that;
         },
 
+
+
+        onUpClick: function() {
+            console.log('up click');
+        },
+        onUpHold: function(event) {
+            event.preventTap();
+            console.log('hold me up..', Date.now());
+        },
+        onDownClick: function() {
+            console.log('down click');
+        },
+        onDownHold: function(event) {
+            event.preventTap();
+            console.log('hold me down ..', Date.now());
+        },
+        onGutterClick: function() {
+            console.log('click');
+        },
+        onGutterHold: function(event) {
+            event.preventTap();
+            console.log('hold me in the gutter..', Date.now());
+        },
+
         moveThumb: function(pageLocation) {
             var that = this,
                 direction = this.orientation === 'y' ? 'top' : 'left',
                 //percent,
                 maxScroll = that.getMaxScroll(),
-                offBy = pageLocation -  that.offset;
+                offBy = pageLocation - that.offset;
 
             offBy = offBy < 0 ? 0 : offBy;
             offBy = offBy / maxScroll;
@@ -313,7 +335,7 @@
                 return that.valueObj.value;
             };
 
-            that.valueChanged = function(){};
+            that.valueChanged = function() {};
 
 
             return that;
