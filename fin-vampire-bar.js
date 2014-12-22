@@ -68,7 +68,7 @@
 
             rangeAdapter.valueChanged = function() {
                 var value = rangeAdapter.getValue();
-                if (value) {
+                if (value || value === 0) {
                     try {
                         that.supressUpdates = true;
                         that.moveToPercent(value);
