@@ -8,7 +8,7 @@
     // document.
     //
 
-
+    var noop = function() {};
     var //templateHolder = document.createElement('div'),
     //SCROLL_BAR_BUTTON_SIZE = 15,
         throttle = function(func, wait, options) {
@@ -18,6 +18,7 @@
         if (!options) {
             options = {};
         }
+
         var later = function() {
             previous = options.leading === false ? 0 : Date.now();
             timeout = null;
@@ -142,11 +143,16 @@
             var that = this;
 
             that.thumb.addEventListener('mousedown', function(event) {
+                noop(event);
                 that.isScrolling = true;
                 var direction = that.orientation === 'y' ? 'top' : 'left';
                 var distanceFromEdge = that.gutter.getBoundingClientRect()[direction];
-                var offset = (typeof event['offset' + that.orientation.toUpperCase()] === 'undefined') ? 'layer' : 'offset';
-                that.offset = event[offset + that.orientation.toUpperCase()] + distanceFromEdge;
+                if (that.orientation === 'y') {
+                    that.offset = distanceFromEdge + 11; //event.y || event.clientY + distanceFromEdge;
+                } else {
+                    that.offset = distanceFromEdge + 11; //event.x || event.clientX + distanceFromEdge;
+                }
+
             });
 
             return that;
@@ -157,8 +163,13 @@
 
             document.addEventListener('mousemove', function(event) {
                 if (that.isScrolling) {
-
-                    that.moveThumb(event['page' + that.orientation.toUpperCase()]);
+                    var offset = 0;
+                    if (that.orientation === 'y') {
+                        offset = event.y || event.clientY;
+                    } else {
+                        offset = event.x || event.clientX;
+                    }
+                    that.moveThumb(offset);
                 }
             });
 
